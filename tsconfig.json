@@ -28,7 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/word/[word]/page.jsx",
-, "src/app/page.jsx"    "src/lib/api/wordsjs"
+    "src/lib/api/wordsjs"
   ],
   "exclude": ["node_modules"]
 }
