@@ -17,14 +17,24 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full flex justify-center max-w-3xl mx-auto sticky inset-x-0 top-0 bg-black border-b border-b-slate-900">
-      <div className="flex gap-4 m-2 items-center">
+    <header className="w-full flex max-w-3xl mx-auto sticky inset-x-0 top-0 bg-black border-b border-b-slate-900 z-10">
+      <div className="flex md:gap-4 m-2 items-center">
         <Link href={"/"}>
-          <h1 className="font-semibold text-lg">Free Dictionary</h1>
+          <h1 className="font-semibold text-lg hidden md:block">
+            Free Dictionary
+          </h1>
+          <div className="font-semibold text-lg md:hidden ">
+            <p>
+              F<span className="text-xs">ree</span>
+            </p>
+            <p>
+              D<span className="text-xs">ictionary</span>
+            </p>
+          </div>
         </Link>
 
         <form onSubmit={search}>
-          <div className="flex items-center gap-2 p-1 rounded-lg">
+          <div className="flex items-center gap-2 p-1 ml-2 border-l border-l-slate-500">
             <SearchIcon />
 
             <input

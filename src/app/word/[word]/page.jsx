@@ -4,6 +4,30 @@ import React from "react";
 import Meanings from "@/components/Meanings";
 import { InfoIcon } from "lucide-react";
 
+export async function generateMetadata({ params }, parent) {
+  const { word } = await params;
+
+  const { wordDetails } = parent;
+
+  try {
+    return {
+      title: `Free Dictionary | ${word}`,
+      description: `Definitions for "${word}"`,
+    };
+  } catch (error) {
+    if (wordDetails) {
+      return {
+        title: `Free Dictionary | Not found for "${word}"`,
+        description: `No word found for ${word}`,
+      };
+    } else {
+      return {
+        title: "Error fetching data!",
+      };
+    }
+  }
+}
+
 const Word = async ({ params }) => {
   const { word } = await params;
 
@@ -11,6 +35,7 @@ const Word = async ({ params }) => {
 
   try {
     wordDetails = await fetchWord(word);
+    generateMetadata({ params }, { wordDetails });
 
     // console.log(wordDetails);
 
@@ -39,6 +64,7 @@ const Word = async ({ params }) => {
       </main>
     );
   } catch (error) {
+    console.log("Error in Word: " + error.message);
     return (
       <main className="max-w-3xl w-full mx-auto">
         <div className="m-2">
